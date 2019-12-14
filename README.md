@@ -1,2 +1,2 @@
 # Net7
-Neural network library 
+Multilayer Perceptron  library 

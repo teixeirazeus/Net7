@@ -19,26 +19,39 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 #include "matrix.h"
 #include "network.h"
-
-
+#include "rwdata.h"
 
 int main(int argc, char const *argv[]) {
+
+  readData();
+
+  /*
   srand((unsigned) time(NULL));
   int size = 5;
   network* net;
   matrix *m;
-  net = network_create(2,2,1,1);
+  net = network_create(3,2,1,1);
   matrix *input, *target;
-  input = matrix_create(40,2);
-  matrix_random(input);
-  target = matrix_create(40,1);
-  matrix_random(target);
+  input = matrix_create(4,3);
+  //matrix_random(input);
+  input->values[0][0] = 0;input->values[0][1] = 0;input->values[0][2] = 1;
+  input->values[1][0] = 1;input->values[1][1] = 0;input->values[0][2] = 1;
+  input->values[2][0] = 0;input->values[2][1] = 1;input->values[0][2] = 1;
+  input->values[3][0] = 1;input->values[3][1] = 1;input->values[0][2] = 1;
 
+  target = matrix_create(4,1);
+  target->values[0][0] = 0;
+  target->values[1][0] = 1;
+  target->values[2][0] = 1;
+  target->values[3][0] = 0;
+
+  //matrix_random(target);
+  net->print_epoch = 1;
   network_train(net, input, target, 0.1, 1000);
 
   matrix_free(input);
   matrix_free(target);
   network_free(net);
-
+  */
   return 0;
 }

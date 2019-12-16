@@ -21,9 +21,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 #include "network.h"
 #include "rwdata.h"
 
+
 int main(int argc, char const *argv[]) {
 
-  readData();
+  data* d = readData();
 
   /*
   srand((unsigned) time(NULL));

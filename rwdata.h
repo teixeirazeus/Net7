@@ -21,13 +21,13 @@ typedef struct data{
   matrix *target;
 }data;
 
-float *line2array(char line[], int size){
+float *line2array(char line[], int size, char split){
   float *array = malloc(sizeof(float)*size);
   char cut[40]; int cut_i = 0;
   int array_i = 0, line_i = -1;
   while (array_i != size) {
     line_i++;
-    if(line[line_i] == ',' || line[line_i] == '\n' || line[line_i] == '\0'){
+    if(line[line_i] == split || line[line_i] == '\n' || line[line_i] == '\0'){
       cut[cut_i] = '\0';
       array[array_i++] = atof(cut);
       cut_i = 0;
@@ -38,13 +38,13 @@ float *line2array(char line[], int size){
   return array;
 }
 
-data *readData(){
+data *readData(char name[], char split){
   data *d = malloc(sizeof(data));
   int size_train = 2, size_target = 1;
   FILE *fp;
   char buff[255];
 
-  fp = fopen("xor.dat", "r");
+  fp = fopen(name, "r");
   int file_size = file_lines(fp);
   float *a;
 
@@ -53,7 +53,7 @@ data *readData(){
 
   int line_count = 0;
   while (fgets(buff, 255, (FILE*)fp) != NULL){
-    a = line2array(buff, size_train+size_target);
+    a = line2array(buff, size_train+size_target, split);
 
     //train
     int i;

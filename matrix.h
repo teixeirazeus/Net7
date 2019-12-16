@@ -36,6 +36,7 @@ matrix *matrix_create(int row, int column){
 }
 
 void matrix_random(matrix *m){
+    srand((unsigned) time(NULL));
     for (size_t i = 0; i < m->row; i++) {
         for (size_t j = 0; j < m->column; j++) {
             m->values[i][j] = (float)rand()/(float)(RAND_MAX/1);

@@ -24,7 +24,14 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char const *argv[]) {
 
-  data* d = readData();
+  char name[] = "xor.dat";
+  data* d = readData(name, ',');
+  matrix_print(d->atributes);
+  matrix_print(d->target);
+
+  matrix_free(d->atributes);
+  matrix_free(d->target);
+  free(d);
 
   /*
   srand((unsigned) time(NULL));

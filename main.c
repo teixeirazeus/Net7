@@ -29,37 +29,21 @@ int main(int argc, char const *argv[]) {
   matrix_print(d->atributes);
   matrix_print(d->target);
 
+
+
+  int size = 5;
+  network* net;
+  net = network_create(3,20,1,5);
+
+  //matrix_random(target);
+  net->print_epoch = 10;
+  while(1)
+    network_train(net, d->atributes, d->target, 0.01, 1000);
+
   matrix_free(d->atributes);
   matrix_free(d->target);
   free(d);
-
-  /*
-  srand((unsigned) time(NULL));
-  int size = 5;
-  network* net;
-  matrix *m;
-  net = network_create(3,2,1,1);
-  matrix *input, *target;
-  input = matrix_create(4,3);
-  //matrix_random(input);
-  input->values[0][0] = 0;input->values[0][1] = 0;input->values[0][2] = 1;
-  input->values[1][0] = 1;input->values[1][1] = 0;input->values[0][2] = 1;
-  input->values[2][0] = 0;input->values[2][1] = 1;input->values[0][2] = 1;
-  input->values[3][0] = 1;input->values[3][1] = 1;input->values[0][2] = 1;
-
-  target = matrix_create(4,1);
-  target->values[0][0] = 0;
-  target->values[1][0] = 1;
-  target->values[2][0] = 1;
-  target->values[3][0] = 0;
-
-  //matrix_random(target);
-  net->print_epoch = 1;
-  network_train(net, input, target, 0.1, 1000);
-
-  matrix_free(input);
-  matrix_free(target);
   network_free(net);
-  */
+
   return 0;
 }

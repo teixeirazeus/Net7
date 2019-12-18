@@ -135,3 +135,27 @@ float network_train(network* net, matrix* input, matrix* target, float lr, int n
   }
   return epoch_erro;
 }
+
+void matrix_write(matrix *m, FILE *file){
+  fprintf(file, "M\n");
+  fprintf(file, "%i %i\n", m->row, m->column);
+  for (int line = 0; line < m->row; line++) {
+    for (int c = 0; c <  m->column; c++) {
+      if(c == m->column-1){
+        fprintf(file, "%f\n", m->values[line][c]);
+      }else{
+        fprintf(file, "%f ", m->values[line][c]);
+      }
+    }
+  }
+}
+
+void network_save(network *net, char filename[]){
+  FILE *fp;
+  fp = fopen(filename, "w+");
+  fprintf(fp, "%i %i %i %i\n", net->input, net->hidden, net->output, net->hidden_size);
+  for (int i = 0; i < net->hidden_size+2; i++) {
+    matrix_write(net->synapse[i], fp);
+  }
+  fclose(fp);
+}

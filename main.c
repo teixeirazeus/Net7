@@ -37,8 +37,9 @@ int main(int argc, char const *argv[]) {
 
   //matrix_random(target);
   net->print_epoch = 10;
-  while(1)
-    network_train(net, d->atributes, d->target, 0.01, 1000);
+  network_train(net, d->atributes, d->target, 0.01, 1000);
+
+  network_save(net, "brain.net7");
 
   matrix_free(d->atributes);
   matrix_free(d->target);

@@ -24,6 +24,12 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char const *argv[]) {
 
+  /*
+  network* net;
+  net = network_load("brain.net7");
+*/
+  //network_save(net, "brain2.net7");
+
   char name[] = "xor.dat";
   data* d = readData(name, ',');
   matrix_print(d->atributes);

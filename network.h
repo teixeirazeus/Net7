@@ -159,3 +159,42 @@ void network_save(network *net, char filename[]){
   }
   fclose(fp);
 }
+
+network* network_load(char filename[]){
+  FILE *fp;
+  char buff[255];
+  fp = fopen(filename, "r");
+
+  int netArg[4], netai=0;
+  for (int i = 0; i < 4; i++) {
+    fscanf(fp, "%s", buff);
+    netArg[netai++] = atoi(buff);
+  }
+  network* net;
+  net = network_create(netArg[0],netArg[1],netArg[2],netArg[3]);
+
+
+  //printf("final >> %s\n", buff);
+
+  for (int isy = 0; isy < netArg[3]+2; isy++) {
+    fscanf(fp, "%s", buff);
+    if(buff[0] != 'M'){break;}
+    fscanf(fp, "%s", buff);
+    fscanf(fp, "%s", buff);
+
+    for (int i = 0; i < net->synapse[isy]->row; i++) {
+        for (int j = 0; j < net->synapse[isy]->column; j++) {
+            fscanf(fp, "%s", buff);
+            net->synapse[isy]->values[i][j] = atof(buff);
+            printf("%f\n", net->synapse[isy]->values[i][j]);
+        }
+    }
+
+  }
+
+  fclose(fp);
+
+  //network* net = malloc(sizeof(network));
+
+  return net;
+}

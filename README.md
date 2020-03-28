@@ -4,7 +4,7 @@ Net7 - Multilayer Perceptron  library
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Complete_graph_K7.svg/800px-Complete_graph_K7.svg.png" width="200">
 
 ## Basic Usage
-It creates a neural network with 3 neurons in the input layer, 1 neuron in the output layer and 5 hidden layers with 20 neurons each.
+Create a neural network with 3 neurons in the input layer, 1 neuron in the output layer and 5 hidden layers with 20 neurons each.
 ```
 network* net = network_create(3,20,1,5);
 ```
